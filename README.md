@@ -39,7 +39,7 @@ This is the jupyter notebook which consist of complete code. This is used to exp
 ## Step 1:
 Enter the name in the provided space infront of the label as "Name of the Patient".
 ## Step 2:
-Select 5 Symptoms from the dropdown menu which are labelled as Symptom 1,Symptom 2,Symptom 3,Symptom 4,Symptom 5 respectively.
+Select 5 Symptoms from the dropdown menu which are labelled as Symptom 1, Symptom 2, Symptom 3, Symptom 4, Symptom 5 respectively.
 ## Step 3:
 As per user interest,he/she can predict the disease using different algorithms such as Decision tree algorithm,Random forest algorithm,Naive bayes algorithm and K-Nearest neighbour.According to algorithm click on buttons:</br>
 Press Prediction 1 for Decision tree algorithm</br>

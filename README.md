@@ -32,7 +32,7 @@ These four algorithms is used to train our model and all gives an accuracy of ov
 ## GUI.py
 This is the file which is used to create the interface of our system.GUI stands for Graphical User Interface and to create it we have used Tkinter which gives a software kind of view to our project where user can directly interact with the system by entering the symptoms of dieases and he/she will get the disease through various algorithms.
 
-## Project_ML.py
+## Project_ML.ipynb
 This is the jupyter notebook which consist of complete code. This is used to explain the working of each and every module used in the project.
 
 # Working with GUI

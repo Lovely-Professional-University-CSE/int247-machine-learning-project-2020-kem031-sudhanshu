@@ -44,7 +44,7 @@ for i in range(0,len(l1)):
 
 
 #Reading the training .csv file
-df=pd.read_csv("Prototype.csv")
+df=pd.read_csv("training.csv")
 
 #Replace the values in the imported file by pandas by the inbuilt function replace in pandas.
 
@@ -65,7 +65,7 @@ X= df[l1]
 y = df[["prognosis"]]
 
 #Reading the  testing.csv file
-tr=pd.read_csv("Prototype 1.csv")
+tr=pd.read_csv("testing.csv")
 
 #Using inbuilt function replace in pandas for replacing the values
 

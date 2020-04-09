@@ -1,6 +1,7 @@
 #Tk class is used to create a root window
 root = Tk()
 root.configure(background='Ivory')
+root.title("Smart Disease Predictor System")
 
 Symptom1 = StringVar()
 Symptom1.set("Select Here")
@@ -33,7 +34,7 @@ def Reset():
     except AttributeError:
         pass
 
-from tkinter import messagebox
+import tkMessageBox 
 def Exit():
     qExit=messagebox.askyesno("System","Do you want to exit the system")
     
@@ -42,53 +43,53 @@ def Exit():
         exit()
 
 #Headings for the GUI written at the top of GUI
-w2 = Label(root, justify=LEFT, text="Disease Predictor using Machine Learning", fg="Red", bg="White")
+w2 = Label(root, justify=LEFT, text="Disease Predictor using Machine Learning", fg="Red", bg="Ivory")
 w2.config(font=("Times",30,"bold italic"))
 w2.grid(row=1, column=0, columnspan=2, padx=100)
-w2 = Label(root, justify=LEFT, text="Contributors: Sudhanshu,Rohan,Aditya", fg="Pink", bg="Blue")
+w2 = Label(root, justify=LEFT, text="Contributors: Sudhanshu,Rohan,Aditya", fg="Pink", bg="Ivory")
 w2.config(font=("Times",30,"bold italic"))
 w2.grid(row=2, column=0, columnspan=2, padx=100)
 
 #Label for the name
-NameLb = Label(root, text="Name of the Patient", fg="Red", bg="Sky Blue")
+NameLb = Label(root, text="Name of the Patient", fg="Red", bg="Ivory")
 NameLb.config(font=("Times",15,"bold italic"))
 NameLb.grid(row=6, column=0, pady=15, sticky=W)
 
 #Creating Labels for the symtoms
-S1Lb = Label(root, text="Symptom 1", fg="Blue", bg="Pink")
+S1Lb = Label(root, text="Symptom 1", fg="Black", bg="Ivory")
 S1Lb.config(font=("Times",15,"bold italic"))
 S1Lb.grid(row=7, column=0, pady=10, sticky=W)
 
-S2Lb = Label(root, text="Symptom 2", fg="Sky Blue", bg="Purple")
+S2Lb = Label(root, text="Symptom 2", fg="Black", bg="Ivory")
 S2Lb.config(font=("Times",15,"bold italic"))
 S2Lb.grid(row=8, column=0, pady=10, sticky=W)
 
-S3Lb = Label(root, text="Symptom 3", fg="Green",bg="red")
+S3Lb = Label(root, text="Symptom 3", fg="Black",bg="Ivory")
 S3Lb.config(font=("Times",15,"bold italic"))
 S3Lb.grid(row=9, column=0, pady=10, sticky=W)
 
-S4Lb = Label(root, text="Symptom 4", fg="blue", bg="Yellow")
+S4Lb = Label(root, text="Symptom 4", fg="Black", bg="Ivory")
 S4Lb.config(font=("Times",15,"bold italic"))
 S4Lb.grid(row=10, column=0, pady=10, sticky=W)
 
-S5Lb = Label(root, text="Symptom 5", fg="purple", bg="light green")
+S5Lb = Label(root, text="Symptom 5", fg="Black", bg="Ivory")
 S5Lb.config(font=("Times",15,"bold italic"))
 S5Lb.grid(row=11, column=0, pady=10, sticky=W)
 
 #Labels for the different algorithms
-lrLb = Label(root, text="DecisionTree", fg="white", bg="red")
+lrLb = Label(root, text="DecisionTree", fg="white", bg="red", width = 20)
 lrLb.config(font=("Times",15,"bold italic"))
 lrLb.grid(row=15, column=0, pady=10,sticky=W)
 
-destreeLb = Label(root, text="RandomForest", fg="Red", bg="Orange")
+destreeLb = Label(root, text="RandomForest", fg="Red", bg="Orange", width = 20)
 destreeLb.config(font=("Times",15,"bold italic"))
 destreeLb.grid(row=17, column=0, pady=10, sticky=W)
 
-ranfLb = Label(root, text="NaiveBayes", fg="White", bg="green")
+ranfLb = Label(root, text="NaiveBayes", fg="White", bg="green", width = 20)
 ranfLb.config(font=("Times",15,"bold italic"))
 ranfLb.grid(row=19, column=0, pady=10, sticky=W)
 
-knnLb = Label(root, text="kNearestNeighbour", fg="Red", bg="Sky Blue")
+knnLb = Label(root, text="kNearestNeighbour", fg="Red", bg="Sky Blue", width = 20)
 knnLb.config(font=("Times",15,"bold italic"))
 knnLb.grid(row=21, column=0, pady=10, sticky=W)
 OPTIONS = sorted(l1)
@@ -116,27 +117,27 @@ S5.grid(row=11, column=1)
 #Buttons for predicting the disease using different algorithms
 dst = Button(root, text="Prediction 1", command=DecisionTree,bg="Red",fg="yellow")
 dst.config(font=("Times",15,"bold italic"))
-dst.grid(row=8, column=3,padx=10)
+dst.grid(row=6, column=3,padx=10)
 
 rnf = Button(root, text="Prediction 2", command=randomforest,bg="Purple",fg="green")
 rnf.config(font=("Times",15,"bold italic"))
-rnf.grid(row=9, column=3,padx=10)
+rnf.grid(row=7, column=3,padx=10)
 
 lr = Button(root, text="Prediction 3", command=NaiveBayes,bg="Blue",fg="white")
 lr.config(font=("Times",15,"bold italic"))
-lr.grid(row=10, column=3,padx=10)
+lr.grid(row=8, column=3,padx=10)
 
 kn = Button(root, text="Prediction 4", command=KNN,bg="sky blue",fg="red")
 kn.config(font=("Times",15,"bold italic"))
-kn.grid(row=11, column=3,padx=10)
+kn.grid(row=9, column=3,padx=10)
 
-rs = Button(root,text="Reset Inputs", command=Reset,bg="Yellow",fg="purple")
+rs = Button(root,text="Reset Inputs", command=Reset,bg="yellow",fg="purple",width=15)
 rs.config(font=("Times",15,"bold italic"))
-rs.grid(row=12,column=3,padx=10)
+rs.grid(row=10,column=3,padx=10)
 
-ex = Button(root,text="Exit System", command=Exit,bg="pink",fg="purple")
+ex = Button(root,text="Exit System", command=Exit,bg="yellow",fg="purple",width=15)
 ex.config(font=("Times",15,"bold italic"))
-ex.grid(row=13,column=3,padx=10)
+ex.grid(row=11,column=3,padx=10)
 
 #Showing the output of different aldorithms
 t1 = Text(root, height=1, width=40,bg="Light green",fg="red")

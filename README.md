@@ -35,6 +35,9 @@ This is the file which is used to create the interface of our system.GUI stands 
 ## Project_ML.ipynb
 This is the jupyter notebook which consist of complete code. This is used to explain the working of each and every module used in the project.
 
+## dataset_visualization.py
+This is the file which consist of two functions namely plotsPerColumnDistribution, PlotScatterMatrix used for Distribution Graphs, Scatter and density plots respectively. These functions are used to visualize our dataset.
+
 # Working with GUI
 ## Step 1:
 Enter the name in the provided space infront of the label as "Name of the Patient".

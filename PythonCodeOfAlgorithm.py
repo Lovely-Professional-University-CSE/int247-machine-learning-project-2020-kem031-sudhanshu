@@ -41,10 +41,10 @@ disease=['Fungal infection','Allergy','GERD','Chronic cholestasis','Drug Reactio
 l2=[]
 for i in range(0,len(l1)):
     l2.append(0)
-
+print(l2)
 
 #Reading the training .csv file
-df=pd.read_csv("training.csv")
+df=pd.read_csv("Prototype.csv")
 
 #Replace the values in the imported file by pandas by the inbuilt function replace in pandas.
 
@@ -57,15 +57,15 @@ df.replace({'prognosis':{'Fungal infection':0,'Allergy':1,'GERD':2,'Chronic chol
     'Hyperthyroidism':32,'Hypoglycemia':33,'Osteoarthristis':34,'Arthritis':35,
     '(vertigo) Paroymsal  Positional Vertigo':36,'Acne':37,'Urinary tract infection':38,'Psoriasis':39,
     'Impetigo':40}},inplace=True)
-
-#check the df 
-#print(df.head())
-
+df.head()
 X= df[l1]
 y = df[["prognosis"]]
+np.ravel(y)
+print(X)
+print(y)
 
 #Reading the  testing.csv file
-tr=pd.read_csv("testing.csv")
+tr=pd.read_csv("prototype 1.csv")
 
 #Using inbuilt function replace in pandas for replacing the values
 
@@ -78,12 +78,15 @@ tr.replace({'prognosis':{'Fungal infection':0,'Allergy':1,'GERD':2,'Chronic chol
     'Hyperthyroidism':32,'Hypoglycemia':33,'Osteoarthristis':34,'Arthritis':35,
     '(vertigo) Paroymsal  Positional Vertigo':36,'Acne':37,'Urinary tract infection':38,'Psoriasis':39,
     'Impetigo':40}},inplace=True)
-
+tr.head()
 X_test= tr[l1]
 y_test = tr[["prognosis"]]
 np.ravel(y_test)
-np.ravel(y)
+print(X_test)
+print(y_test)
 
+root = Tk()
+pred1=StringVar()
 def DecisionTree():
 
     from sklearn import tree
@@ -115,13 +118,13 @@ def DecisionTree():
 
 
     if (h=='yes'):
-        t1.delete("1.0", END)
-        t1.insert(END, disease[a])
+        pred1.set(" ")
+        pred1.set(disease[a])
     else:
-        t1.delete("1.0", END)
-        t1.insert(END, "Not Found")
+        pred1.set(" ")
+        pred1.set("Not Found")
 
-
+pred2=StringVar()
 def randomforest():
     from sklearn.ensemble import RandomForestClassifier
     clf4 = RandomForestClassifier(n_estimators=100)
@@ -151,12 +154,13 @@ def randomforest():
             break
 
     if (h=='yes'):
-        t2.delete("1.0", END)
-        t2.insert(END, disease[a])
+        pred2.set(" ")
+        pred2.set(disease[a])
     else:
-        t2.delete("1.0", END)
-        t2.insert(END, "Not Found")
-
+        pred2.set(" ")
+        pred2.set("Not Found")
+        
+pred4=StringVar()
 def KNN():
     from sklearn.neighbors import KNeighborsClassifier
     knn=KNeighborsClassifier(n_neighbors=5,metric='minkowski',p=2)
@@ -186,13 +190,13 @@ def KNN():
 
 
     if (h=='yes'):
-        t4.delete("1.0", END)
-        t4.insert(END, disease[a])
+        pred4.set(" ")
+        pred4.set(disease[a])
     else:
-        t4.delete("1.0", END)
-        t4.insert(END, "Not Found")
+        pred4.set(" ")
+        pred4.set("Not Found")
 
-
+pred3=StringVar()
 def NaiveBayes():
     from sklearn.naive_bayes import GaussianNB
     gnb = GaussianNB()
@@ -220,9 +224,9 @@ def NaiveBayes():
             break
 
     if (h=='yes'):
-        t3.delete("1.0", END)
-        t3.insert(END, disease[a])
+        pred3.set(" ")
+        pred3.set(disease[a])
     else:
-        t3.delete("1.0", END)
-        t3.insert(END, "Not Found")
+        pred3.set(" ")
+        pred3.set("Not Found")
 

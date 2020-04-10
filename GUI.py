@@ -1,7 +1,8 @@
 #Tk class is used to create a root window
 root = Tk()
 root.configure(background='Ivory')
-root.title("Smart Disease Predictor System")
+root.title('Smart Disease Predictor System')
+root.resizable(0,0)
 
 Symptom1 = StringVar()
 Symptom1.set("Select Here")
@@ -28,20 +29,23 @@ def Reset():
     Symptom3.set("Select Here")
     Symptom4.set("Select Here")
     Symptom5.set("Select Here")
+    NameEn.delete(first=0,last=100)
+    pred1.set(" ")
+    pred2.set(" ")
+    pred3.set(" ")
+    pred4.set(" ")
     try:
         prev_win.destroy()
         prev_win=None
     except AttributeError:
         pass
-
-import tkMessageBox 
+from tkinter import messagebox
 def Exit():
     qExit=messagebox.askyesno("System","Do you want to exit the system")
     
     if qExit:
         root.destroy()
         exit()
-
 #Headings for the GUI written at the top of GUI
 w2 = Label(root, justify=LEFT, text="Disease Predictor using Machine Learning", fg="Red", bg="Ivory")
 w2.config(font=("Times",30,"bold italic"))
@@ -140,21 +144,17 @@ ex.config(font=("Times",15,"bold italic"))
 ex.grid(row=11,column=3,padx=10)
 
 #Showing the output of different aldorithms
-t1 = Text(root, height=1, width=40,bg="Light green",fg="red")
-t1.config(font=("Times",15,"bold italic"))
-t1.grid(row=15, column=1, padx=10)
+t1=Label(root,font=("Times",15,"bold italic"),text="Decision Tree",height=1,bg="Light green"
+         ,width=40,fg="red",textvariable=pred1,relief="sunken").grid(row=15, column=1, padx=10)
 
-t2 = Text(root, height=1, width=40,bg="Purple",fg="Blue")
-t2.config(font=("Times",15,"bold italic"))
-t2.grid(row=17, column=1 , padx=10)
+t2=Label(root,font=("Times",15,"bold italic"),text="Random Forest",height=1,bg="Purple"
+         ,width=40,fg="Blue",textvariable=pred2,relief="sunken").grid(row=17, column=1, padx=10)
 
-t3 = Text(root, height=1, width=40,bg="red",fg="orange")
-t3.config(font=("Times",15,"bold italic"))
-t3.grid(row=19, column=1 , padx=10)
+t3=Label(root,font=("Times",15,"bold italic"),text="Naive Bayes",height=1,bg="red"
+         ,width=40,fg="orange",textvariable=pred3,relief="sunken").grid(row=19, column=1, padx=10)
 
-t4 = Text(root, height=1, width=40,bg="Blue",fg="yellow")
-t4.config(font=("Times",15,"bold italic"))
-t4.grid(row=21, column=1 , padx=10)
+t4=Label(root,font=("Times",15,"bold italic"),text="kNearest Neighbour",height=1,bg="Blue"
+         ,width=40,fg="yellow",textvariable=pred4,relief="sunken").grid(row=21, column=1, padx=10)
 
 #calling this function because the application is ready to run
 root.mainloop()

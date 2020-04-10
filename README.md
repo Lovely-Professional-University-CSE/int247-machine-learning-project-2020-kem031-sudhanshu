@@ -38,6 +38,9 @@ This is the jupyter notebook which consist of complete code. This is used to exp
 ## dataset_visualization.py
 This is the file which consist of two functions namely plotsPerColumnDistribution, PlotScatterMatrix used for Distribution Graphs, Scatter and density plots respectively. These functions are used to visualize our dataset.
 
+# GUI.jpeg
+This file contains the screenshot of the built GUI which shows the working of the system
+
 # Working with GUI
 ## Step 1:
 Enter the name in the provided space infront of the label as "Name of the Patient".

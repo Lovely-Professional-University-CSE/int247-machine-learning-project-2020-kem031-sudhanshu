@@ -4,22 +4,28 @@ root.configure(background='Ivory')
 root.title('Smart Disease Predictor System')
 root.resizable(0,0)
 
+#taking first input as symptom
 Symptom1 = StringVar()
 Symptom1.set("Select Here")
 
+#taking second input as symptom
 Symptom2 = StringVar()
 Symptom2.set("Select Here")
 
+#taking third input as symptom
 Symptom3 = StringVar()
 Symptom3.set("Select Here")
 
+#taking fourth input as symptom
 Symptom4 = StringVar()
 Symptom4.set("Select Here")
 
+#taking fifth input as symptom
 Symptom5 = StringVar()
 Symptom5.set("Select Here")
 Name = StringVar()
 
+#function to Reset the given inputs to initial position
 prev_win=None
 def Reset():
     global prev_win
@@ -29,7 +35,9 @@ def Reset():
     Symptom3.set("Select Here")
     Symptom4.set("Select Here")
     Symptom5.set("Select Here")
+    
     NameEn.delete(first=0,last=100)
+    
     pred1.set(" ")
     pred2.set(" ")
     pred3.set(" ")
@@ -39,13 +47,15 @@ def Reset():
         prev_win=None
     except AttributeError:
         pass
+    
+#Exit button to come out of system
 from tkinter import messagebox
 def Exit():
     qExit=messagebox.askyesno("System","Do you want to exit the system")
-    
     if qExit:
         root.destroy()
         exit()
+        
 #Headings for the GUI written at the top of GUI
 w2 = Label(root, justify=LEFT, text="Disease Predictor using Machine Learning", fg="Red", bg="Ivory")
 w2.config(font=("Times",30,"bold italic"))
@@ -119,7 +129,6 @@ S5 = OptionMenu(root, Symptom5,*OPTIONS)
 S5.grid(row=11, column=1)
 
 #Buttons for predicting the disease using different algorithms
-#Buttons for predicting the disease using different algorithms
 dst = Button(root, text="Prediction 1", command=DecisionTree,bg="Red",fg="yellow")
 dst.config(font=("Times",15,"bold italic"))
 dst.grid(row=6, column=3,padx=10)
@@ -144,8 +153,7 @@ ex = Button(root,text="Exit System", command=Exit,bg="yellow",fg="purple",width=
 ex.config(font=("Times",15,"bold italic"))
 ex.grid(row=11,column=3,padx=10)
 
-#Showing the output of different aldorithms
-#Showing the output of different aldorithms
+#Showing the output of different algorithms
 t1=Label(root,font=("Times",15,"bold italic"),text="Decision Tree",height=1,bg="Light green"
          ,width=40,fg="red",textvariable=pred1,relief="sunken").grid(row=15, column=1, padx=10)
 

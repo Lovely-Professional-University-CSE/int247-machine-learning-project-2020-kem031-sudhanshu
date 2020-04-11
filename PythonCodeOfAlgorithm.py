@@ -1,7 +1,11 @@
 #Importing Libraries
+from mpl_toolkits.mplot3d import Axes3D
+from sklearn.preprocessing import StandardScaler
+import matplotlib.pyplot as plt
 from tkinter import *
 import numpy as np
 import pandas as pd
+import os
 
 #List of the symptoms is listed here in list l1.
 
@@ -38,9 +42,9 @@ disease=['Fungal infection','Allergy','GERD','Chronic cholestasis','Drug Reactio
     'Arthritis','(vertigo) Paroymsal  Positional Vertigo','Acne','Urinary tract infection','Psoriasis',
     'Impetigo']
 
-l2=np.zeros(len(l1))
-#for i in range(0,len(l1)):
-#    l2.append(0)
+l2=[]
+for i in range(0,len(l1)):
+    l2.append(0)
 print(l2)
 
 #Reading the training .csv file
@@ -80,9 +84,8 @@ def plotPerColumnDistribution(df1, nGraphShown, nGraphPerRow):
         plt.title(f'{columnNames[i]} (column {i})')
     plt.tight_layout(pad = 1.0, w_pad = 1.0, h_pad = 1.0)
     plt.show()
-
-
-# Scatter and density plots
+    
+    # Scatter and density plots
 def plotScatterMatrix(df1, plotSize, textSize):
     df1 = df1.select_dtypes(include =[np.number]) # keep only numerical columns
     # Remove rows and columns that would lead to df being singular
@@ -98,7 +101,6 @@ def plotScatterMatrix(df1, plotSize, textSize):
         ax[i, j].annotate('Corr. coef = %.3f' % corrs[i, j], (0.8, 0.2), xycoords='axes fraction', ha='center', va='center', size=textSize)
     plt.suptitle('Scatter and Density Plot')
     plt.show()
-
 plotPerColumnDistribution(df, 10, 5)
 plotScatterMatrix(df, 20, 10)
 
@@ -123,7 +125,6 @@ tr.replace({'prognosis':{'Fungal infection':0,'Allergy':1,'GERD':2,'Chronic chol
     '(vertigo) Paroymsal  Positional Vertigo':36,'Acne':37,'Urinary tract infection':38,'Psoriasis':39,
     'Impetigo':40}},inplace=True)
 tr.head()
-
 plotPerColumnDistribution(tr, 10, 5)
 plotScatterMatrix(tr, 20, 10)
 
@@ -136,145 +137,207 @@ print(y_test)
 root = Tk()
 pred1=StringVar()
 def DecisionTree():
-
-    from sklearn import tree
-
-    clf3 = tree.DecisionTreeClassifier() 
-    clf3 = clf3.fit(X,y)
-
-    from sklearn.metrics import accuracy_score
-    y_pred=clf3.predict(X_test)
-    print(accuracy_score(y_test, y_pred))
-    print(accuracy_score(y_test, y_pred,normalize=False))
-
-    psymptoms = [Symptom1.get(),Symptom2.get(),Symptom3.get(),Symptom4.get(),Symptom5.get()]
-
-    for k in range(0,len(l1)):
-        for z in psymptoms:
-            if(z==l1[k]):
-                l2[k]=1
-
-    inputtest = [l2]
-    predict = clf3.predict(inputtest)
-    predicted=predict[0]
-
-    h='no'
-    for a in range(0,len(disease)):
-        if(predicted == a):
-            h='yes'
-            break
-
-
-    if (h=='yes'):
+    if len(NameEn.get()) == 0:
         pred1.set(" ")
-        pred1.set(disease[a])
+        comp=messagebox.askokcancel("System","Kindly Fill the Name")
+        if comp:
+            root.mainloop()
+    elif((Symptom1.get()=="Select Here") or (Symptom2.get()=="Select Here")):
+        pred1.set(" ")
+        sym=messagebox.askokcancel("System","Kindly Fill atleast first two Symptoms")
+        if sym:
+            root.mainloop()
     else:
-        pred1.set(" ")
-        pred1.set("Not Found")
+        from sklearn import tree
 
+        clf3 = tree.DecisionTreeClassifier() 
+        clf3 = clf3.fit(X,y)
+
+        from sklearn.metrics import classification_report,confusion_matrix,accuracy_score
+        y_pred=clf3.predict(X_test)
+        print("Decision Tree")
+        print("Accuracy")
+        print(accuracy_score(y_test, y_pred))
+        print(accuracy_score(y_test, y_pred,normalize=False))
+        print("Confusion matrix")
+        conf_matrix=confusion_matrix(y_test,y_pred)
+        print(conf_matrix)
+
+        psymptoms = [Symptom1.get(),Symptom2.get(),Symptom3.get(),Symptom4.get(),Symptom5.get()]
+
+        for k in range(0,len(l1)):
+            for z in psymptoms:
+                if(z==l1[k]):
+                    l2[k]=1
+
+        inputtest = [l2]
+        predict = clf3.predict(inputtest)
+        predicted=predict[0]
+
+        h='no'
+        for a in range(0,len(disease)):
+            if(predicted == a):
+                h='yes'
+                break
+
+    
+        if (h=='yes'):
+            pred1.set(" ")
+            pred1.set(disease[a])
+        else:
+            pred1.set(" ")
+            pred1.set("Not Found")
+            
 pred2=StringVar()
 def randomforest():
-    from sklearn.ensemble import RandomForestClassifier
-    clf4 = RandomForestClassifier(n_estimators=100)
-    clf4 = clf4.fit(X,np.ravel(y))
-
-    # calculating accuracy 
-    from sklearn.metrics import accuracy_score
-    y_pred=clf4.predict(X_test)
-    print(accuracy_score(y_test, y_pred))
-    print(accuracy_score(y_test, y_pred,normalize=False))
-    
-    psymptoms = [Symptom1.get(),Symptom2.get(),Symptom3.get(),Symptom4.get(),Symptom5.get()]
-
-    for k in range(0,len(l1)):
-        for z in psymptoms:
-            if(z==l1[k]):
-                l2[k]=1
-
-    inputtest = [l2]
-    predict = clf4.predict(inputtest)
-    predicted=predict[0]
-
-    h='no'
-    for a in range(0,len(disease)):
-        if(predicted == a):
-            h='yes'
-            break
-
-    if (h=='yes'):
-        pred2.set(" ")
-        pred2.set(disease[a])
+    if len(NameEn.get()) == 0:
+        pred1.set(" ")
+        comp=messagebox.askokcancel("System","Kindly Fill the Name")
+        if comp:
+            root.mainloop()
+    elif((Symptom1.get()=="Select Here") or (Symptom2.get()=="Select Here")):
+        pred1.set(" ")
+        sym=messagebox.askokcancel("System","Kindly Fill atleast first two Symptoms")
+        if sym:
+            root.mainloop()
     else:
-        pred2.set(" ")
-        pred2.set("Not Found")
-        
+        from sklearn.ensemble import RandomForestClassifier
+        clf4 = RandomForestClassifier(n_estimators=100)
+        clf4 = clf4.fit(X,np.ravel(y))
+
+        # calculating accuracy 
+        from sklearn.metrics import classification_report,confusion_matrix,accuracy_score
+        y_pred=clf4.predict(X_test)
+        print("Random Forest")
+        print("Accuracy")
+        print(accuracy_score(y_test, y_pred))
+        print(accuracy_score(y_test, y_pred,normalize=False))
+        print("Confusion matrix")
+        conf_matrix=confusion_matrix(y_test,y_pred)
+        print(conf_matrix)
+    
+        psymptoms = [Symptom1.get(),Symptom2.get(),Symptom3.get(),Symptom4.get(),Symptom5.get()]
+
+        for k in range(0,len(l1)):
+            for z in psymptoms:
+                if(z==l1[k]):
+                    l2[k]=1
+
+        inputtest = [l2]
+        predict = clf4.predict(inputtest)
+        predicted=predict[0]
+
+        h='no'
+        for a in range(0,len(disease)):
+            if(predicted == a):
+                h='yes'
+                break
+        if (h=='yes'):
+            pred2.set(" ")
+            pred2.set(disease[a])
+        else:
+            pred2.set(" ")
+            pred2.set("Not Found")
+           
 pred4=StringVar()
 def KNN():
-    from sklearn.neighbors import KNeighborsClassifier
-    knn=KNeighborsClassifier(n_neighbors=5,metric='minkowski',p=2)
-    knn=knn.fit(X,np.ravel(y))
-    
-    from sklearn.metrics import accuracy_score
-    y_pred=knn.predict(X_test)
-    print(accuracy_score(y_test, y_pred))
-    print(accuracy_score(y_test, y_pred,normalize=False))
-
-    psymptoms = [Symptom1.get(),Symptom2.get(),Symptom3.get(),Symptom4.get(),Symptom5.get()]
-
-    for k in range(0,len(l1)):
-        for z in psymptoms:
-            if(z==l1[k]):
-                l2[k]=1
-
-    inputtest = [l2]
-    predict = knn.predict(inputtest)
-    predicted=predict[0]
-
-    h='no'
-    for a in range(0,len(disease)):
-        if(predicted == a):
-            h='yes'
-            break
-
-
-    if (h=='yes'):
-        pred4.set(" ")
-        pred4.set(disease[a])
+    if len(NameEn.get()) == 0:
+        pred1.set(" ")
+        comp=messagebox.askokcancel("System","Kindly Fill the Name")
+        if comp:
+            root.mainloop()
+    elif((Symptom1.get()=="Select Here") or (Symptom2.get()=="Select Here")):
+        pred1.set(" ")
+        sym=messagebox.askokcancel("System","Kindly Fill atleast first two Symptoms")
+        if sym:
+            root.mainloop()
     else:
-        pred4.set(" ")
-        pred4.set("Not Found")
+        from sklearn.neighbors import KNeighborsClassifier
+        knn=KNeighborsClassifier(n_neighbors=5,metric='minkowski',p=2)
+        knn=knn.fit(X,np.ravel(y))
+    
+        from sklearn.metrics import classification_report,confusion_matrix,accuracy_score
+        y_pred=knn.predict(X_test)
+        print("KNN")
+        print("Accuracy")
+        print(accuracy_score(y_test, y_pred))
+        print(accuracy_score(y_test, y_pred,normalize=False))
+        print("Confusion matrix")
+        conf_matrix=confusion_matrix(y_test,y_pred)
+        print(conf_matrix)
 
+        psymptoms = [Symptom1.get(),Symptom2.get(),Symptom3.get(),Symptom4.get(),Symptom5.get()]
+
+        for k in range(0,len(l1)):
+            for z in psymptoms:
+                if(z==l1[k]):
+                    l2[k]=1
+
+        inputtest = [l2]
+        predict = knn.predict(inputtest)
+        predicted=predict[0]
+
+        h='no'
+        for a in range(0,len(disease)):
+            if(predicted == a):
+                h='yes'
+                break
+
+
+        if (h=='yes'):
+            pred4.set(" ")
+            pred4.set(disease[a])
+        else:
+            pred4.set(" ")
+            pred4.set("Not Found")
+
+import matplotlib.pyplot as plt
 pred3=StringVar()
 def NaiveBayes():
-    from sklearn.naive_bayes import GaussianNB
-    gnb = GaussianNB()
-    gnb=gnb.fit(X,np.ravel(y))
-
-    from sklearn.metrics import accuracy_score
-    y_pred=gnb.predict(X_test)
-    print(accuracy_score(y_test, y_pred))
-    print(accuracy_score(y_test, y_pred,normalize=False))
-
-    psymptoms = [Symptom1.get(),Symptom2.get(),Symptom3.get(),Symptom4.get(),Symptom5.get()]
-    for k in range(0,len(l1)):
-        for z in psymptoms:
-            if(z==l1[k]):
-                l2[k]=1
-
-    inputtest = [l2]
-    predict = gnb.predict(inputtest)
-    predicted=predict[0]
-
-    h='no'
-    for a in range(0,len(disease)):
-        if(predicted == a):
-            h='yes'
-            break
-
-    if (h=='yes'):
-        pred3.set(" ")
-        pred3.set(disease[a])
+    if len(NameEn.get()) == 0:
+        pred1.set(" ")
+        comp=messagebox.askokcancel("System","Kindly Fill the Name")
+        if comp:
+            root.mainloop()
+    elif((Symptom1.get()=="Select Here") or (Symptom2.get()=="Select Here")):
+        pred1.set(" ")
+        sym=messagebox.askokcancel("System","Kindly Fill atleast first two Symptoms")
+        if sym:
+            root.mainloop()
     else:
-        pred3.set(" ")
-        pred3.set("Not Found")
+        from sklearn.naive_bayes import GaussianNB
+        gnb = GaussianNB()
+        gnb=gnb.fit(X,np.ravel(y))
+
+        from sklearn.metrics import classification_report,confusion_matrix,accuracy_score
+        y_pred=gnb.predict(X_test)
+        print("Naive Bayes")
+        print("Accuracy")
+        print(accuracy_score(y_test, y_pred))
+        print(accuracy_score(y_test, y_pred,normalize=False))
+        print("Confusion matrix")
+        conf_matrix=confusion_matrix(y_test,y_pred)
+        print(conf_matrix)
+
+        psymptoms = [Symptom1.get(),Symptom2.get(),Symptom3.get(),Symptom4.get(),Symptom5.get()]
+        for k in range(0,len(l1)):
+            for z in psymptoms:
+                if(z==l1[k]):
+                    l2[k]=1
+
+        inputtest = [l2]
+        predict = gnb.predict(inputtest)
+        predicted=predict[0]
+
+        h='no'
+        for a in range(0,len(disease)):
+            if(predicted == a):
+                h='yes'
+                break
+        if (h=='yes'):
+            pred3.set(" ")
+            pred3.set(disease[a])
+        else:
+            pred3.set(" ")
+            pred3.set("Not Found")
 

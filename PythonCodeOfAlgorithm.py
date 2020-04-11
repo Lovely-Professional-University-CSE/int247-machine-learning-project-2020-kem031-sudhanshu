@@ -38,9 +38,9 @@ disease=['Fungal infection','Allergy','GERD','Chronic cholestasis','Drug Reactio
     'Arthritis','(vertigo) Paroymsal  Positional Vertigo','Acne','Urinary tract infection','Psoriasis',
     'Impetigo']
 
-l2=[]
-for i in range(0,len(l1)):
-    l2.append(0)
+l2=np.zeros(len(l1))
+#for i in range(0,len(l1)):
+#    l2.append(0)
 print(l2)
 
 #Reading the training .csv file

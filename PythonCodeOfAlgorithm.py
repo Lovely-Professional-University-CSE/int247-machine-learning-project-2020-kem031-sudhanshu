@@ -1,8 +1,12 @@
-#Importing Libraries
+#Importing Libraries from matplotlib to visualize the data
 from mpl_toolkits.mplot3d import Axes3D
 from sklearn.preprocessing import StandardScaler
 import matplotlib.pyplot as plt
+
+#Importing Libraries to create GUI
 from tkinter import *
+
+#Importing Libraries to perform calculations
 import numpy as np
 import pandas as pd
 import os
@@ -61,6 +65,8 @@ df.replace({'prognosis':{'Fungal infection':0,'Allergy':1,'GERD':2,'Chronic chol
     'Hyperthyroidism':32,'Hypoglycemia':33,'Osteoarthristis':34,'Arthritis':35,
     '(vertigo) Paroymsal  Positional Vertigo':36,'Acne':37,'Urinary tract infection':38,'Psoriasis':39,
     'Impetigo':40}},inplace=True)
+
+#printing the top 5 rows of the training dataset
 df.head()
 
 # Distribution graphs (histogram/bar graph) of column data
@@ -85,7 +91,7 @@ def plotPerColumnDistribution(df1, nGraphShown, nGraphPerRow):
     plt.tight_layout(pad = 1.0, w_pad = 1.0, h_pad = 1.0)
     plt.show()
     
-    # Scatter and density plots
+# Scatter and density plots
 def plotScatterMatrix(df1, plotSize, textSize):
     df1 = df1.select_dtypes(include =[np.number]) # keep only numerical columns
     # Remove rows and columns that would lead to df being singular
@@ -124,6 +130,8 @@ tr.replace({'prognosis':{'Fungal infection':0,'Allergy':1,'GERD':2,'Chronic chol
     'Hyperthyroidism':32,'Hypoglycemia':33,'Osteoarthristis':34,'Arthritis':35,
     '(vertigo) Paroymsal  Positional Vertigo':36,'Acne':37,'Urinary tract infection':38,'Psoriasis':39,
     'Impetigo':40}},inplace=True)
+
+#printing the top 5 rows of the testing data
 tr.head()
 plotPerColumnDistribution(tr, 10, 5)
 plotScatterMatrix(tr, 20, 10)
@@ -136,6 +144,7 @@ print(y_test)
 
 root = Tk()
 pred1=StringVar()
+#Decision tree algorithm to predict
 def DecisionTree():
     if len(NameEn.get()) == 0:
         pred1.set(" ")
@@ -189,6 +198,7 @@ def DecisionTree():
             pred1.set("Not Found")
             
 pred2=StringVar()
+#random forest algorithm to predict
 def randomforest():
     if len(NameEn.get()) == 0:
         pred1.set(" ")
@@ -240,6 +250,7 @@ def randomforest():
             pred2.set("Not Found")
            
 pred4=StringVar()
+#K-Nearest Neighbour algorithm to predict
 def KNN():
     if len(NameEn.get()) == 0:
         pred1.set(" ")
@@ -291,8 +302,9 @@ def KNN():
             pred4.set(" ")
             pred4.set("Not Found")
 
-import matplotlib.pyplot as plt
+
 pred3=StringVar()
+#predicting the result with naive bayes algorithm
 def NaiveBayes():
     if len(NameEn.get()) == 0:
         pred1.set(" ")

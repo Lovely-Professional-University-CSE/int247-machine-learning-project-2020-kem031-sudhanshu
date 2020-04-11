@@ -39,9 +39,9 @@ This file contains the screenshot of the built GUI which shows the working of th
 
 # Working with GUI
 ## Step 1:
-Enter the name in the provided space infront of the label as "Name of the Patient".
+Enter the name in the provided space infront of the label as "Name of the Patient". It is the mandatory field which user have to enter in order to get result.
 ## Step 2:
-Select 5 Symptoms from the dropdown menu which are labelled as Symptom 1, Symptom 2, Symptom 3, Symptom 4, Symptom 5 respectively.
+Select 5 Symptoms from the dropdown menu which are labelled as Symptom 1, Symptom 2, Symptom 3, Symptom 4, Symptom 5 respectively. If user is not aware of 5 symptoms then it is mandatory for him to enter atleast 2 starting systems, otherwise the result will not come and a message box will pop up for the same
 ## Step 3:
 As per user interest,he/she can predict the disease using different algorithms such as Decision tree algorithm, Random forest algorithm, Naive bayes algorithm and K-Nearest neighbour. According to algorithm click on buttons:</br>
 Press Prediction 1 for Decision tree algorithm</br>

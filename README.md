@@ -12,7 +12,6 @@ different mediums are available.The idea behind recommender system is to adapt t
 * 11716071-Sudhanshu Agrawal
 * 11716106-Rohan Agrawal
 * 11716665-Aditya Arya
-* 17682-Dr.Aditya khamparia Sir
 
 # Explanation of Files
 ## training.csv
@@ -34,9 +33,6 @@ This is the file which is used to create the interface of our system.GUI stands 
 
 ## Project_ML.ipynb
 This is the jupyter notebook which consist of complete code. This is used to explain the working of each and every module used in the project.
-
-## dataset_visualization.py
-This is the file which consist of two functions namely plotsPerColumnDistribution, PlotScatterMatrix used for Distribution Graphs, Scatter and density plots respectively. These functions are used to visualize our dataset.
 
 # GUI.jpeg
 This file contains the screenshot of the built GUI which shows the working of the system

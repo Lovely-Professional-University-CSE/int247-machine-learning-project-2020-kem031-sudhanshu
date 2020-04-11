@@ -1,4 +1,4 @@
-#These code is to be inserted in paericular algorithm function in PythonCodeOfAlgorithm.py
+#These code is already present in  functions of paricular algorithm in PythonCodeOfAlgorithm.py
 
 #Creating table for storing the values in databse.db for Random Forest Algorithm
 import s3qlite3 

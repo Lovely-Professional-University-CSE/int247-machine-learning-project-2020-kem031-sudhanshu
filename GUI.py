@@ -119,11 +119,12 @@ S5 = OptionMenu(root, Symptom5,*OPTIONS)
 S5.grid(row=11, column=1)
 
 #Buttons for predicting the disease using different algorithms
+#Buttons for predicting the disease using different algorithms
 dst = Button(root, text="Prediction 1", command=DecisionTree,bg="Red",fg="yellow")
 dst.config(font=("Times",15,"bold italic"))
 dst.grid(row=6, column=3,padx=10)
 
-rnf = Button(root, text="Prediction 2", command=randomforest,bg="Purple",fg="green")
+rnf = Button(root, text="Prediction 2", command=randomforest,bg="Light green",fg="red")
 rnf.config(font=("Times",15,"bold italic"))
 rnf.grid(row=7, column=3,padx=10)
 
@@ -144,11 +145,12 @@ ex.config(font=("Times",15,"bold italic"))
 ex.grid(row=11,column=3,padx=10)
 
 #Showing the output of different aldorithms
+#Showing the output of different aldorithms
 t1=Label(root,font=("Times",15,"bold italic"),text="Decision Tree",height=1,bg="Light green"
          ,width=40,fg="red",textvariable=pred1,relief="sunken").grid(row=15, column=1, padx=10)
 
 t2=Label(root,font=("Times",15,"bold italic"),text="Random Forest",height=1,bg="Purple"
-         ,width=40,fg="Blue",textvariable=pred2,relief="sunken").grid(row=17, column=1, padx=10)
+         ,width=40,fg="white",textvariable=pred2,relief="sunken").grid(row=17, column=1, padx=10)
 
 t3=Label(root,font=("Times",15,"bold italic"),text="Naive Bayes",height=1,bg="red"
          ,width=40,fg="orange",textvariable=pred3,relief="sunken").grid(row=19, column=1, padx=10)

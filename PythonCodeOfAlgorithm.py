@@ -144,7 +144,6 @@ print(y_test)
 
 root = Tk()
 pred1=StringVar()
-#Decision tree algorithm to predict
 def DecisionTree():
     if len(NameEn.get()) == 0:
         pred1.set(" ")
@@ -157,6 +156,7 @@ def DecisionTree():
         if sym:
             root.mainloop()
     else:
+        print(NameEn.get())
         from sklearn import tree
 
         clf3 = tree.DecisionTreeClassifier() 
@@ -196,9 +196,15 @@ def DecisionTree():
         else:
             pred1.set(" ")
             pred1.set("Not Found")
-            
+        import sqlite3 
+        conn = sqlite3.connect('database.db') 
+        c = conn.cursor() 
+        c.execute("CREATE TABLE IF NOT EXISTS DecisionTree(Name StringVar,Symtom1 StringVar,Symtom2 StringVar,Symtom3 StringVar,Symtom4 TEXT,Symtom5 TEXT,Disease StringVar)")
+        c.execute("INSERT INTO DecisionTree(Name,Symtom1,Symtom2,Symtom3,Symtom4,Symtom5,Disease) VALUES(?,?,?,?,?,?,?)",(NameEn.get(),Symptom1.get(),Symptom2.get(),Symptom3.get(),Symptom4.get(),Symptom5.get(),pred1.get()))
+        conn.commit()  
+        c.close() 
+        conn.close()
 pred2=StringVar()
-#random forest algorithm to predict
 def randomforest():
     if len(NameEn.get()) == 0:
         pred1.set(" ")
@@ -248,9 +254,16 @@ def randomforest():
         else:
             pred2.set(" ")
             pred2.set("Not Found")
+        import sqlite3 
+        conn = sqlite3.connect('database.db') 
+        c = conn.cursor() 
+        c.execute("CREATE TABLE IF NOT EXISTS RandomForest(Name StringVar,Symtom1 StringVar,Symtom2 StringVar,Symtom3 StringVar,Symtom4 TEXT,Symtom5 TEXT,Disease StringVar)")
+        c.execute("INSERT INTO RandomForest(Name,Symtom1,Symtom2,Symtom3,Symtom4,Symtom5,Disease) VALUES(?,?,?,?,?,?,?)",(NameEn.get(),Symptom1.get(),Symptom2.get(),Symptom3.get(),Symptom4.get(),Symptom5.get(),pred2.get()))
+        conn.commit()  
+        c.close() 
+        conn.close()
            
 pred4=StringVar()
-#K-Nearest Neighbour algorithm to predict
 def KNN():
     if len(NameEn.get()) == 0:
         pred1.set(" ")
@@ -301,10 +314,17 @@ def KNN():
         else:
             pred4.set(" ")
             pred4.set("Not Found")
+        import sqlite3 
+        conn = sqlite3.connect('database.db') 
+        c = conn.cursor() 
+        c.execute("CREATE TABLE IF NOT EXISTS KNearestNeighbour(Name StringVar,Symtom1 StringVar,Symtom2 StringVar,Symtom3 StringVar,Symtom4 TEXT,Symtom5 TEXT,Disease StringVar)")
+        c.execute("INSERT INTO KNearestNeighbour(Name,Symtom1,Symtom2,Symtom3,Symtom4,Symtom5,Disease) VALUES(?,?,?,?,?,?,?)",(NameEn.get(),Symptom1.get(),Symptom2.get(),Symptom3.get(),Symptom4.get(),Symptom5.get(),pred4.get()))
+        conn.commit()  
+        c.close() 
+        conn.close()
 
-
+import matplotlib.pyplot as plt
 pred3=StringVar()
-#predicting the result with naive bayes algorithm
 def NaiveBayes():
     if len(NameEn.get()) == 0:
         pred1.set(" ")
@@ -352,4 +372,13 @@ def NaiveBayes():
         else:
             pred3.set(" ")
             pred3.set("Not Found")
+        import sqlite3 
+        conn = sqlite3.connect('database.db') 
+        c = conn.cursor() 
+        c.execute("CREATE TABLE IF NOT EXISTS NaiveBayes(Name StringVar,Symtom1 StringVar,Symtom2 StringVar,Symtom3 StringVar,Symtom4 TEXT,Symtom5 TEXT,Disease StringVar)")
+        c.execute("INSERT INTO NaiveBayes(Name,Symtom1,Symtom2,Symtom3,Symtom4,Symtom5,Disease) VALUES(?,?,?,?,?,?,?)",(NameEn.get(),Symptom1.get(),Symptom2.get(),Symptom3.get(),Symptom4.get(),Symptom5.get(),pred3.get()))
+        conn.commit()  
+        c.close() 
+        conn.close()
+
 

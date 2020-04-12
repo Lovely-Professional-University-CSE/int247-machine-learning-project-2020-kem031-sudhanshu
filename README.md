@@ -24,6 +24,9 @@ https://sites.google.com/view/mlprojectdiseaseprediction/documentation
 ## testing.csv
 * This is the dataset which has been used to test our model so that we can know the accuracy of our model. this dataset is predefined with output.
 
+## Compiled_Report.pdf
+* This is the complete explaination of Each and every module implemented in software. You can refer to the pdf for the detailed explaination of every part.
+
 ## PythonCodeOfAlgorithm.py
 This is the file which consist of dataset and there are various differnt algorithms used for training of our model which are as follows:
 * Decision Tree 

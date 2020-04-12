@@ -1,7 +1,8 @@
 #These code is already present in  functions of paricular algorithm in PythonCodeOfAlgorithm.py
+#This code has been used to connect our system with database.
 
 #Creating table for storing the values in databse.db for Random Forest Algorithm
-import s3qlite3 
+import sqlite3 
 conn = sqlite3.connect('database.db') 
 c = conn.cursor()
 c.execute("CREATE TABLE IF NOT EXISTS RandomForest(Name StringVar,Symtom1 StringVar,Symtom2 StringVar,Symtom3 StringVar,Symtom4 TEXT,Symtom5 TEXT,Disease StringVar)")

@@ -15,6 +15,7 @@ different mediums are available.The idea behind recommender system is to adapt t
 
 # Visit Website
 https://sites.google.com/view/mlprojectdiseaseprediction/documentation
+![](https://github.com/Lovely-Professional-University-CSE/int247-machine-learning-project-2020-kem031-sudhanshu/blob/master/WebsiteLink/Capture.PNG)
 
 # Explanation of Files
 ## training.csv

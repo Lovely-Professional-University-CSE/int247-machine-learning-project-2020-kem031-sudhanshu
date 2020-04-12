@@ -142,6 +142,36 @@ np.ravel(y_test)
 print(X_test)
 print(y_test)
 
+#list1 = DF['prognosis'].unique()
+def scatterplt(disea):
+    x = ((DF.loc[disea]).sum())#total sum of symptom reported for given disease
+    x.drop(x[x==0].index,inplace=True)#droping symptoms with values 0
+    print(x.values)
+    y = x.keys()#storing nameof symptoms in y
+    print(len(x))
+    print(len(y))
+    plt.title(disea)
+    plt.scatter(y,x.values)
+    plt.show()
+
+def scatterinp(sym1,sym2,sym3,sym4,sym5):
+    x = [sym1,sym2,sym3,sym4,sym5]#storing input symptoms in y
+    y = [0,0,0,0,0]#creating and giving values to the input symptoms
+    if(sym1!='Select Here'):
+        y[0]=1
+    if(sym2!='Select Here'):
+        y[1]=1
+    if(sym3!='Select Here'):
+        y[2]=1
+    if(sym4!='Select Here'):
+        y[3]=1
+    if(sym5!='Select Here'):
+        y[4]=1
+    print(x)
+    print(y)
+    plt.scatter(x,y)
+    plt.show()
+
 root = Tk()
 pred1=StringVar()
 def DecisionTree():
@@ -204,6 +234,11 @@ def DecisionTree():
         conn.commit()  
         c.close() 
         conn.close()
+        #printing scatter plot of input symptoms
+        #printing scatter plot of disease predicted vs its symptoms
+        scatterinp(Symptom1.get(),Symptom2.get(),Symptom3.get(),Symptom4.get(),Symptom5.get())
+        scatterplt(pred1.get())
+        
 pred2=StringVar()
 def randomforest():
     if len(NameEn.get()) == 0:
@@ -262,6 +297,8 @@ def randomforest():
         conn.commit()  
         c.close() 
         conn.close()
+        #printing scatter plot of disease predicted vs its symptoms
+        scatterplt(pred2.get())
            
 pred4=StringVar()
 def KNN():
@@ -322,6 +359,8 @@ def KNN():
         conn.commit()  
         c.close() 
         conn.close()
+         #printing scatter plot of disease predicted vs its symptoms
+        scatterplt(pred4.get())
 
 pred3=StringVar()
 def NaiveBayes():
@@ -379,5 +418,7 @@ def NaiveBayes():
         conn.commit()  
         c.close() 
         conn.close()
+         #printing scatter plot of disease predicted vs its symptoms
+        scatterplt(pred3.get())
 
 

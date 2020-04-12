@@ -13,6 +13,9 @@ different mediums are available.The idea behind recommender system is to adapt t
 * 11716106-Rohan Agrawal
 * 11716665-Aditya Arya
 
+# Visit Website
+https://sites.google.com/view/mlprojectdiseaseprediction/documentation
+
 # Explanation of Files
 ## training.csv
 * This is the main dataset which has been used in this project. This dataset consist of mainly two columns "Disease" and "Symptoms" but this dataset is preprocessed so it helps in easily clasifying the data. This dataset is used to train our model.

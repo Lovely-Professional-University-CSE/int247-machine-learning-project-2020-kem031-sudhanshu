@@ -323,7 +323,6 @@ def KNN():
         c.close() 
         conn.close()
 
-import matplotlib.pyplot as plt
 pred3=StringVar()
 def NaiveBayes():
     if len(NameEn.get()) == 0:

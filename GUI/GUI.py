@@ -1,3 +1,5 @@
+#This code is already included in PythonCodeOfAlgorithm.py file
+
 #Tk class is used to create a root window
 root = Tk()
 root.configure(background='Ivory')
